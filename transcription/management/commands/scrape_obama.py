@@ -39,7 +39,6 @@ class Command(BaseCommand):
         request = requests.get(link_url)
         soup = BeautifulSoup(request.content)
 
-        print soup.select('.date')[0].get_text()
         if len(soup.select('.date')) > 0:
             return {
                 'speaker': self.speaker,
@@ -75,6 +74,7 @@ class Command(BaseCommand):
                                 '#content ul.entry-list li.views-row a')
 
                             for link in speech_links:
+
                                 presidential_speech = False
                                 for word in self.PRESIDENT_WORDS:
                                     if word in link.get_text():
@@ -85,5 +85,7 @@ class Command(BaseCommand):
                                         u'http://www.whitehouse.gov%s'\
                                             % link.attrs['href'],
                                         link.get_text())
-                                    print transcript_dict
+                                    transcript = Transcript.objects\
+                                        .get_or_create(transcript_dict)
+                                    print transcript
                                     presidential_speech = False
