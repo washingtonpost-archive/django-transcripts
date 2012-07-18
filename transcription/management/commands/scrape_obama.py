@@ -58,7 +58,9 @@ class Command(BaseCommand):
             for month in months:
                 if year == int(datetime.datetime.now().year):
                     if month <= int(datetime.datetime.now().month):
-                        url = self.base_url + u'%s/%s' % (year, str(month).zfill(2))
+                        url = self.base_url + u'%s/%s' % (
+                            year,
+                            str(month).zfill(2))
                         request = requests.get(url)
                         soup = BeautifulSoup(request.content)
 
@@ -79,6 +81,8 @@ class Command(BaseCommand):
 
                                 if presidential_speech == True:
                                     transcript_dict = self.parse_transcript(
-                                        link.attrs['href'], link.get_text())
+                                        u'http://www.whitehouse.gov%s'\
+                                            % link.attrs['href'],
+                                        link.get_text())
                                     print transcript_dict
                                     presidential_speech = False
