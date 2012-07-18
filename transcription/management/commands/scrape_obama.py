@@ -39,11 +39,11 @@ class Command(BaseCommand):
         request = requests.get(link_url)
         soup = BeautifulSoup(request.content)
 
-        print len(soup.select('.date'))
+        print soup.select('.date')[0].get_text()
         if len(soup.select('.date')) > 0:
             return {
                 'speaker': self.speaker,
-                'date': dateutil_parse(soup.select('.date')[0]),
+                'date': dateutil_parse(soup.select('.date')[0].get_text()),
                 'full_text': str(soup.select('.content')),
                 'headline': headline,
                 'url': link_url
