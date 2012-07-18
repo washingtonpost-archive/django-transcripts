@@ -53,7 +53,7 @@ class Transcript(models.Model):
     speakers = models.ManyToManyField(Speaker, blank=True, null=True)
 
     def __unicode__(self):
-        if len(self.speakers_set.all()) > 0:
+        if len(self.speakers.all()) > 0:
             speaker_text = ", ".join(
                 [s.display_name for s in self.speakers.all()])
             return u'%s: %s' % (self.date, speaker_text)
