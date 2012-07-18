@@ -19,7 +19,7 @@ setup(
         install_requires=[
             'beautifulsoup4',
             'requests',
-            'Django>=1.4',
+            'Django>=1.3',
             'django-tastypie',
             'south',
         ],
