@@ -74,6 +74,7 @@ class Command(BaseCommand):
                                 '#content ul.entry-list li.views-row a')
 
                             for link in speech_links:
+                                print link.get_text()
 
                                 presidential_speech = False
                                 for word in self.PRESIDENT_WORDS:
@@ -86,6 +87,6 @@ class Command(BaseCommand):
                                             % link.attrs['href'],
                                         link.get_text())
                                     transcript = Transcript.objects\
-                                        .get_or_create(transcript_dict)
+                                        .get_or_create(**transcript_dict)
                                     print transcript
                                     presidential_speech = False
