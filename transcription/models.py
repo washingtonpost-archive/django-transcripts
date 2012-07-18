@@ -55,7 +55,7 @@ class Transcript(models.Model):
     def __unicode__(self):
         if len(self.speakers_set.all()) > 0:
             speaker_text = ", ".join(
-                [s.display_name for s in self.speakers_set.all()])
+                [s.display_name for s in self.speakers.all()])
             return u'%s: %s' % (self.date, speaker_text)
         else:
             return u'%s: %s' % (self.date, self.location_text)
