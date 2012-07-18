@@ -17,22 +17,10 @@ class Command(BaseCommand):
         'President Obama'
     ]
     base_url = 'http://www.whitehouse.gov/briefing-room/Speeches-and-Remarks/'
-    speaker = Speaker.objects.get_or_create(
-        first_name="Barack",
-        last_name="Obama",
-        party="d",
-        display_name="Barack Obama"
-    )
-    legacy_classes = [
-        (0, '.legacy-content p'),
-        (1, '.legacy-para')
-    ]
 
     def handle(self, *args, **options):
 
         self.get_transcripts()
-        self.get_statements()
-        self.categorize_statements()
 
     def parse_transcript(self, link_url, headline):
 
