@@ -39,6 +39,7 @@ class Command(BaseCommand):
         request = requests.get(link_url)
         soup = BeautifulSoup(request.content)
 
+        print len(soup.select('.date'))
         if len(soup.select('.date')) > 0:
             return {
                 'speaker': self.speaker,
