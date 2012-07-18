@@ -4,11 +4,11 @@ try:
 except ImportError:
     from distutils.core import setup
 
-import transcripts
+import transcription
 
 setup(
         name='django-transcripts',
-        version=transcripts.__version__,
+        version=transcription.__version__,
         description='A reusable Django app for scraping, storing and categorizing political speech.',
         author=transcripts.__author__,
         author_email=['bowersj@washpost.com'],
@@ -23,7 +23,7 @@ setup(
             'django-tastypie',
             'south',
         ],
-        license=transcripts.__license__,
+        license=transcription.__license__,
         classifiers=[
             'Environment :: Web Environment',
             'Framework :: Django',

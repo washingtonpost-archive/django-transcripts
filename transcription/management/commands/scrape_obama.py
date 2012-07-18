@@ -30,7 +30,7 @@ class Command(BaseCommand):
         if len(soup.select('.date')) > 0:
             return {
                 'date': dateutil_parse(soup.select('.date')[0].get_text()),
-                'full_text': str(soup.select('.content')),
+                'full_text': str(soup.select('#content')),
                 'headline': headline,
                 'url': link_url
             }
@@ -73,7 +73,8 @@ class Command(BaseCommand):
                                         u'http://www.whitehouse.gov%s'\
                                             % link.attrs['href'],
                                         link.get_text())
-                                    transcript = Transcript.objects\
+                                    transcript, transcript_created = Transcript\
+                                        .objects\
                                         .get_or_create(**transcript_dict)
                                     print transcript
                                     presidential_speech = False

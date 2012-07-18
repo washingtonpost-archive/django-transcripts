@@ -1,5 +1,4 @@
 from django.db import models
-from django.template.defaultfilters import slugify
 
 PARTY_CHOICES = (
     ('r', 'Republican'),
@@ -12,12 +11,8 @@ class Category(models.Model):
     name = models.CharField(max_length=255)
     slug = models.SlugField(max_length=255)
 
-    def __unicode__(self):
-        return self.name
-
-    def save(self, *args, **kwargs):
-        self.slug = slugify(self.__unicode__())
-        super(Category, self).save(*args, **kwargs)
+    class Meta:
+        abstract = True
 
 
 class Speaker(models.Model):
@@ -31,14 +26,8 @@ class Speaker(models.Model):
     display_name = models.CharField(max_length=255)
     statement_count = models.IntegerField(default=0)
 
-    def __unicode__(self):
-        return self.display_name
-
-    def save(self, *args, **kwargs):
-        if not self.display_name:
-            self.display_name = u'%s %s' % (self.first_name, self.last_name)
-        self.slug = slugify(self.__unicode__())
-
+    class Meta:
+        abstract = True
 
 class Transcript(models.Model):
     date = models.DateField()
@@ -52,14 +41,8 @@ class Transcript(models.Model):
     created_date = models.DateTimeField(auto_now_add=True)
     speakers = models.ManyToManyField(Speaker, blank=True, null=True)
 
-    def __unicode__(self):
-        if len(self.speakers.all()) > 0:
-            speaker_text = ", ".join(
-                [s.display_name for s in self.speakers.all()])
-            return u'%s: %s' % (self.date, speaker_text)
-        else:
-            return u'%s: %s' % (self.date, self.location_text)
-
+    class Meta:
+        abstract = True
 
 class Statement(models.Model):
     speaker = models.ForeignKey(
@@ -78,8 +61,5 @@ class Statement(models.Model):
     parsed = models.BooleanField(default=False)
     parsed_date = models.DateTimeField(blank=True, null=True)
 
-    def __unicode__(self):
-        return u'%s: %s (%s)' % (
-            self.transcript.date,
-            self.speaker,
-            self.length)
+    class Meta:
+        abstract = True
