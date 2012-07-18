@@ -41,7 +41,6 @@ class Command(BaseCommand):
 
         if len(soup.select('.date')) > 0:
             return {
-                'speaker': self.speaker,
                 'date': dateutil_parse(soup.select('.date')[0].get_text()),
                 'full_text': str(soup.select('.content')),
                 'headline': headline,
