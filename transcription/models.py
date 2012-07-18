@@ -30,6 +30,9 @@ class Speaker(models.Model):
         abstract = True
 
 class Transcript(models.Model):
+    """Examples of the kind of model code you'd want to tie these together.
+    speakers = models.ManyToManyField(Speaker, blank=True, null=True)
+    """
     date = models.DateField()
     full_text = models.TextField()
     headline = models.CharField(max_length=255)
@@ -39,12 +42,12 @@ class Transcript(models.Model):
     parsed = models.BooleanField(default=False)
     parsed_date = models.DateTimeField(blank=True, null=True)
     created_date = models.DateTimeField(auto_now_add=True)
-    speakers = models.ManyToManyField(Speaker, blank=True, null=True)
 
     class Meta:
         abstract = True
 
 class Statement(models.Model):
+    """Examples of the kind of model code you'd want to tie these together.
     speaker = models.ForeignKey(
         Speaker,
         related_name='speaker')
@@ -55,6 +58,7 @@ class Statement(models.Model):
         null=True)
     transcript = models.ForeignKey(Transcript)
     categories = models.ManyToManyField(Category, blank=True, null=True)
+    """
     full_text = models.TextField()
     length = models.IntegerField(default=0)
     featured = models.BooleanField(default=False)
