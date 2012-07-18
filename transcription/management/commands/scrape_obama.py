@@ -10,6 +10,12 @@ from transcription.models import Transcript, Speaker, Statement
 
 class Command(BaseCommand):
 
+    PRESIDENT_WORDS = [
+        'the President',
+        'Barack Obama',
+        'The President',
+        'President Obama'
+    ]
     base_url = 'http://www.whitehouse.gov/briefing-room/Speeches-and-Remarks/'
     speaker = Speaker.objects.get_or_create(
         first_name="Barack",
