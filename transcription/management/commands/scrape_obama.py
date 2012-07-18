@@ -56,7 +56,7 @@ class Command(BaseCommand):
                         request = requests.get(url)
                         soup = BeautifulSoup(request.content)
 
-                        pages = range(0, len(soup.select('li.pager_item') + 2))
+                        pages = range(0, len(soup.select('li.pager_item')) + 2)
 
                         for page in pages:
                             request = requests.get(url + u'?page=%s' % page)
