@@ -10,7 +10,7 @@ setup(
         name='django-transcripts',
         version=transcription.__version__,
         description='A reusable Django app for scraping, storing and categorizing political speech.',
-        author=transcripts.__author__,
+        author=transcription.__author__,
         author_email=['bowersj@washpost.com'],
         url='https://github.com/washingtonpost/django-transcripts',
         packages=[
