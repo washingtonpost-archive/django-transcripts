@@ -63,11 +63,13 @@ class Transcript(models.Model):
 
 class Statement(models.Model):
     speaker = models.ForeignKey(
-        Speaker
+        Speaker,
         related_name='speaker')
     target = models.ForeignKey(
-        Speaker
-        related_name='target')
+        Speaker,
+        related_name='target',
+        blank=True,
+        null=True)
     transcript = models.ForeignKey(Transcript)
     categories = models.ManyToManyField(Category, blank=True, null=True)
     full_text = models.TextField()
