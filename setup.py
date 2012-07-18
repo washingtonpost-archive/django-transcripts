@@ -14,7 +14,7 @@ setup(
         author_email=['bowersj@washpost.com'],
         url='https://github.com/washingtonpost/django-transcripts',
         packages=[
-            'transcripts'
+            'transcription'
         ],
         install_requires=[
             'beautifulsoup4',
